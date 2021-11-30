@@ -31,7 +31,7 @@ SELECT c.id AS customer_id, o.address_id AS order_addr_id, o.id AS order_id, c.f
 JOIN addresses AS a ON c.id = a.customer_id
 JOIN orders AS o ON o.address_id = a.id;
 
--- ***FINAL ANSWER for COUNT is tallied below***
+-- ***** FINAL ANSWER ***** 
 SELECT c.id AS customer_id, c.first_name, c.last_name, COUNT (o.id) AS order_count FROM customers AS c
 JOIN addresses AS a ON c.id = a.customer_id
 JOIN orders AS o ON o.address_id = a.id
@@ -65,7 +65,7 @@ SELECT o.id AS order_id, li.product_id AS product_id, p.unit_price FROM orders A
 JOIN line_items AS li ON li.order_id = o.id
 JOIN products AS p ON p.id = li.product_id;
 -- Okay, now sum up the unit_price by order
--- ***FINAL ANSWER BELOW***
+-- ***** FINAL ANSWER *****
 SELECT o.id AS order_id, SUM(p.unit_price) FROM orders AS o
 JOIN line_items AS li ON li.order_id = o.id
 JOIN products AS p ON p.id = li.product_id
@@ -103,6 +103,7 @@ JOIN products AS p ON p.id = li.product_id
 GROUP BY c.id, a.id, o.id, li.id, p.id
 ORDER BY customer_id, order_id, line_id;
 
+-- ***** FINAL ANSWER ***** 
 -- Step #5 Get the price per customer
 SELECT c.id AS customer_id, c.first_name, c.last_name, SUM(p.unit_price*li.quantity) AS total_price 
 FROM customers AS c
